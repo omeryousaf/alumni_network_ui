@@ -1,33 +1,54 @@
-import React, {Component} from 'react';
-import {FormControl, FormGroup, ControlLabel, Button} from 'react-bootstrap';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function LoginForm() {
-  
-
-  return (
+class StartCbs extends React.Component {
+  state = {
+    login : 'show',
+    register: 'hide'
+    }
+    showLogin = () =>{ 
+      this.setState({login : 'show', register : 'hide'});
+           
+   }
+   showRegister = () =>{ 
+    this.setState({login : 'hide', register : 'show'});
+    
+    }
+  render() {
+    return (
  
-<div class="login-page">
-  <div class="form">
-    <h4>CBS Alumni Network</h4>
-    <form class="register-form">
-      <input type="text" placeholder="name"/>
-      <input type="password" placeholder="password"/>
-      <input type="text" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-    <form class="login-form">
-      <input type="text" placeholder="username"/>
-      <input type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form>
-  </div>
-</div>
-  );
+      <div className="login-page">
+        <div className="form">
+          <h4>CBS Alumni Network</h4>
+          <form className={this.state.register+' register-form'} >
+            <input type="text" placeholder="Full Name"/>
+            <input type="text" placeholder="Email" required />
+            <input type="password" placeholder="Password"/>
+            <input type="text" placeholder="Phone" required />
+            <select>
+                    <option value="">select your boarding house</option>
+                </select>
+                <select>
+                    <option value="">select year</option>
+                </select>
+            <button>create</button>
+            <p className="message">Already registered? <a href="#" onClick={this.showLogin}>Sign In</a></p>
+          </form>
+          <form  className={this.state.login+' login-form'}>
+            <input type="text" placeholder="Email"/>
+            <input type="password" placeholder="Password"/>
+            <button>login</button>
+            <p className="message">Not registered? <a href="#" onClick={this.showRegister}>Create an account</a></p>
+          </form>
+        </div>
+      </div>
+        );
+  }
 }
 
 
-ReactDOM.render(<LoginForm/>,document.querySelector('#root'));
+
+
+
+ReactDOM.render(<StartCbs/>,document.querySelector('#root'));
