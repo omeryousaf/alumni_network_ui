@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import '../config.js';
+import '../../config.js';
 import { BrowserRouter, Link } from 'react-router-dom';
 import BigCalendar from 'react-big-calendar';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -29,7 +29,7 @@ class CbsFullCalendar extends React.Component {
 
 	async componentDidMount() {
 		try {
-			let response = await axios.get(process.env.SERVER_IP + ':' + process.env.SERVER_PORT + '/api/events');
+			let response = await axios.get(process.env.API_SERVER_URL + '/api/events');
 			response.data.events = response.data.events.map((event) => {
 				event.doc.start = moment.unix(event.doc.start).toDate();
 				event.doc.end = moment.unix(event.doc.end).toDate();
@@ -87,7 +87,4 @@ class CbsFullCalendar extends React.Component {
 	}
 }
 
-// export default CbsFullCalendar;
-ReactDOM.render(
-  <CbsFullCalendar />, document.getElementById('root')
-);
+export default CbsFullCalendar;

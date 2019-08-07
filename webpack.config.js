@@ -1,5 +1,5 @@
 const config = {
-  entry: ['babel-polyfill', __dirname + '/react.big.calendar/calendar.jsx'],
+  entry: ['babel-polyfill', __dirname + '/src/app.jsx'],
   output: {
     path: __dirname + '/dist',
     filename: 'bundle.js'
