@@ -80,7 +80,7 @@ class EditEvent extends React.Component {
 			location: this.state.location
 		};
 		try {
-			await axios.post('/api/events', {
+			await axios.post(`${process.env.API_SERVER_URL}/events`, {
 				event: event
 			});
 			const message = 'New Event Created Successfully!';
@@ -115,7 +115,7 @@ class EditEvent extends React.Component {
 		try {
 			await axios({
 				method: 'put',
-				url: `/api/events/${event._id}`,
+				url: `${process.env.API_SERVER_URL}/events/${event._id}`,
 				data: {
 					event: event
 				}
