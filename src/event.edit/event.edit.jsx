@@ -26,10 +26,10 @@ class EditEvent extends React.Component {
 
 	async componentDidMount() {
 		try {
-			const urlFragments = window.location.href.split('/event/');
-			if (urlFragments.length > 1 && urlFragments[1]) {
-				const eventId = urlFragments[1];
-				const response = await axios.get(`/api/events/${eventId}`);
+			const { match: { params } } = this.props;
+			if (params._id) {
+				const eventId = params._id;
+				const response = await axios.get(`${process.env.API_SERVER_URL}/events/${eventId}`);
 				const event = response.data;
 				this.setState({
 					_id: event._id,
@@ -142,7 +142,7 @@ class EditEvent extends React.Component {
 
 	render() {
 		return (
-			<BrowserRouter>
+			<div>
 				<div>
 					<ToastContainer />
 					<div>
@@ -213,7 +213,7 @@ class EditEvent extends React.Component {
 						</form>
 					</div>
 				</div>
-			</BrowserRouter>
+			</div>
 		);
 	}
 }

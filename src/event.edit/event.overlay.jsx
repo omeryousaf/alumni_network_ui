@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -15,12 +16,6 @@ const StyledDiv = styled.div`${spacing}`;
 class EventOverlay extends React.Component {
 	constructor(props) {
 		super(props);
-		this.goToEventEditScreen = this.goToEventEditScreen.bind(this);
-	}
-
-	goToEventEditScreen() {
-		this.props.close();
-		window.location = `/calendar/event/${this.props.event._id}`;
 	}
 
 	render() {
@@ -59,9 +54,7 @@ class EventOverlay extends React.Component {
 					</StyledDiv>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={this.goToEventEditScreen} color="primary" style={{ fontSize: '1em'}}>
-						Edit
-					</Button>
+					<Link className='btn' to={`/calendar/edit/event/${this.props.event._id}`}>EDIT</Link>
 				</DialogActions>
 			</Dialog>
 			);
