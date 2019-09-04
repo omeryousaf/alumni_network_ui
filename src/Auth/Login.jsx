@@ -1,5 +1,6 @@
 import React from "react";
 import "../Auth/index.css";
+import navbar from "../navBar/navBar.jsx";
 const axios = require("axios");
 
 class cbsLogin extends React.Component {
@@ -19,56 +20,61 @@ class cbsLogin extends React.Component {
         username: ""
       }
     };
-    console.log(this.state);
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.signUp = this.signUp.bind(this);
     this.login = this.login.bind(this);
   }
-  async signUp() {
+  async signUp(ev) {
     try {
+      ev.preventDefault();
       const self = this;
       var res = await axios({
         method: "Post",
-        url: "http://localhost:3001/isUsernameUnique",
+        url: "http://localhost:3000/isUsernameUnique",
         data: {
           newUser: self.state.registerationDetails
         }
       });
-      console.log(res);
+      if (!res.data.isUnique) {
+        alert("Email Already Register");
+      }
+      this.showLogin();
     } catch (err) {
       console.log(err);
     }
   }
-  async login() {
+  async login(ev) {
     try {
+      ev.preventDefault();
       const self = this;
       var res = await axios({
         method: "Post",
-        url: "http://localhost:3001/authenticateLogin",
+        url: "http://localhost:3000/authenticateLogin",
         data: {
-          newUser: self.state.registerationDetails
+          username: self.state.registerationDetails.email,
+          password: self.state.registerationDetails.password
         }
       });
-      console.log(res);
+      if (!res.data.member.memberId) {
+        console.log("username/password error");
+      }
+      this.props.history.push("/Home");
+      console.log("login successfully");
     } catch (err) {
-      console.log(err);
+      alert("email/Password incorrect");
     }
   }
   onChangeHandler(event) {
     var tempRegisterationDetails = { ...this.state.registerationDetails };
     tempRegisterationDetails[event.target.name] = event.target.value;
     this.setState({ registerationDetails: tempRegisterationDetails });
-    console.log(event.target.value);
   }
 
   showLogin() {
-    console.log(this);
     this.setState({ login: "show", register: "hide" });
   }
   showRegister() {
-    console.log("register");
-    console.log(this.state);
     this.setState({ login: "hide", register: "show" });
   }
   render() {
@@ -139,7 +145,7 @@ class cbsLogin extends React.Component {
             />
             <input
               type="password"
-              name="email"
+              name="password"
               onChange={this.onChangeHandler}
               placeholder="Password"
               required

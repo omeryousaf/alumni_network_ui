@@ -2,11 +2,13 @@
 
 nav {
   background: black;
-  padding: 20px;
-  margin: 0px;
+  padding: 25px;
+  
 }
 body {
-  background: white;
+  margin: 0px;
+  background: #ffffff !important;
+  margin: 0px !important;
 }
 .navbar-header {
   color: white;

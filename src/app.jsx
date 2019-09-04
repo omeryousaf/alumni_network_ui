@@ -12,13 +12,12 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={Navbar} />
+        <Route path="/" exact component={cbsLogin} />
         <Route path="/calendar" component={CbsFullCalendar} />
+        <Route path="/directory" component={directory} />
+        <Route path="/Home" exact component={Navbar} />
         <Route path="/calendar/event" component={EventEdit} />
         <Route path="/calendar/edit/event/:_id" component={EventEdit} />
-        <Route exact path="/navbar" component={Navbar} />
-
-        <Redirect to="/Navbar" />
       </Switch>
     </BrowserRouter>
   );

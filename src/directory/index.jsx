@@ -4,7 +4,7 @@ import Person from "../directory/singleUser.jsx";
 
 const axios = require("axios");
 
-class Profile extends React.Component {
+class directory extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,4 +39,4 @@ class Profile extends React.Component {
     );
   }
 }
-export default Profile;
+export default directory;
