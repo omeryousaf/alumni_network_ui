@@ -1,7 +1,6 @@
 import React from "react";
-import "../Auth/index.css";
-import navbar from "../navBar/navBar.jsx";
-const axios = require("axios");
+import "./index.css";
+import axios from "axios";
 
 class cbsLogin extends React.Component {
   constructor(props) {
@@ -59,7 +58,7 @@ class cbsLogin extends React.Component {
       if (!res.data.member.memberId) {
         console.log("username/password error");
       }
-      this.props.history.push("/Home");
+      this.props.history.push("/profile");
       console.log("login successfully");
     } catch (err) {
       alert("email/Password incorrect");

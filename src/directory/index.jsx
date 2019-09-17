@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../navBar/navBar.jsx";
 import Person from "../directory/singleUser.jsx";
 
 const axios = require("axios");
@@ -33,7 +32,6 @@ class directory extends React.Component {
     });
     return (
       <div>
-        <Navbar />
         <div className="row">{userdate}</div>
       </div>
     );

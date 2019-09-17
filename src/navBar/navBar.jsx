@@ -8,13 +8,11 @@ class Navbar extends React.Component {
       <div>
         <nav className="navbar navbar-toggleable-xs navbar-fixed-top navbar-inverse bg-inverse">
           <div className="navbar-header">
-            <a className="navbar-brand">
-              <Link to="/">
-                <h3>Baghians Network</h3>
-              </Link>
-            </a>
+            <Link to="/">
+              <h3>Baghians Network</h3>
+            </Link>
           </div>
-          <ul className="">
+          <ul>
             <li id="li1" className="nav.Items">
               <Link to="/directory">Directory</Link>
             </li>
@@ -23,7 +21,6 @@ class Navbar extends React.Component {
             </li>
           </ul>
         </nav>
-        
       </div>
     );
   }

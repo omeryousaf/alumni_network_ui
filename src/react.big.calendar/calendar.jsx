@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from "../navBar/navBar.jsx";
 import BigCalendar from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import * as moment from "moment";
@@ -64,7 +63,6 @@ class CbsFullCalendar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
         <EventOverlay
           open={this.state.showEvent}
           close={this.closeEventOverlay}

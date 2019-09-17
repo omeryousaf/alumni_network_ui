@@ -157,7 +157,7 @@ class EditEvent extends React.Component {
         <div>
           <ToastContainer />
           <div>
-            <Link className="btn" to="/calendar/index">
+            <Link className="btn" to="/calendar">
               Back to Calendar
             </Link>
           </div>

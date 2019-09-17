@@ -1,0 +1,15 @@
+body {
+  background: black;
+}
+img {
+  height: 180px;
+  width: 180px;
+}
+h3 {
+  margin: 15px;
+}
+.container {
+  margin: 0 !important;
+  list-style-type: none;
+  display: inline;
+}
