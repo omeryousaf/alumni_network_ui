@@ -128,9 +128,7 @@ class cbsLogin extends React.Component {
             <button onClick={this.signUp}>create</button>
             <p className="message">
               Already registered?{" "}
-              <a href="#" onClick={this.showLogin.bind(this)}>
-                Sign In
-              </a>
+              <a onClick={this.showLogin.bind(this)}>Sign In</a>
             </p>
           </div>
           <div className={this.state.login + " login-form"}>
@@ -151,9 +149,7 @@ class cbsLogin extends React.Component {
             <button onClick={this.login}>login</button>
             <p className="message">
               Not registered?{" "}
-              <a href="#" onClick={this.showRegister.bind(this)}>
-                Create an account
-              </a>
+              <a onClick={this.showRegister.bind(this)}>Create an account</a>
             </p>
           </div>
         </div>

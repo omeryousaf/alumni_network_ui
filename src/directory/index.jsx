@@ -15,7 +15,7 @@ class directory extends React.Component {
   async getMembersDate() {
     var res = await axios({
       method: "Get",
-      url: "http://localhost:3000/members"
+      url: `${process.env.API_SERVER_URL}/members`
     });
     var tempMemberList = [...this.state.memberList];
     tempMemberList = [res.data];
