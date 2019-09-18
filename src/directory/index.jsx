@@ -23,16 +23,16 @@ class directory extends React.Component {
   }
   render() {
     var tempMemberList = [...this.state.memberList];
-    const userdate = [];
+    const userdata = [];
     console.log(tempMemberList);
     tempMemberList.map((d, key) => {
       d.members.map((d, key) => {
-        userdate.push(<Person data={d} key={key} />);
+        userdata.push(<Person data={d} key={key} />);
       });
     });
     return (
       <div>
-        <div className="row">{userdate}</div>
+        <div className="row">{userdata}</div>
       </div>
     );
   }
