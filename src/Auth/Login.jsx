@@ -1,7 +1,6 @@
 import React from "react";
 import "./index.css";
 import axios from "axios";
-
 class cbsLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +29,7 @@ class cbsLogin extends React.Component {
       const self = this;
       var res = await axios({
         method: "Post",
-        url: "http://localhost:3000/isUsernameUnique",
+        url: `${process.env.API_SERVER_URL}isUsernameUnique`,
         data: {
           newUser: self.state.registerationDetails
         }
@@ -49,7 +48,7 @@ class cbsLogin extends React.Component {
       const self = this;
       var res = await axios({
         method: "Post",
-        url: "http://localhost:3000/authenticateLogin",
+        url: `${process.env.API_SERVER_URL}/authenticateLogin`,
         data: {
           username: self.state.registerationDetails.email,
           password: self.state.registerationDetails.password
@@ -87,7 +86,7 @@ class cbsLogin extends React.Component {
       <div className="login-page">
         <div className="form">
           <h4>CBS Alumni Network</h4>
-          <form className={this.state.register + " register-form"}>
+          <div className={this.state.register + " register-form"}>
             <input
               type="text"
               name="name"
@@ -133,8 +132,8 @@ class cbsLogin extends React.Component {
                 Sign In
               </a>
             </p>
-          </form>
-          <form className={this.state.login + " login-form"}>
+          </div>
+          <div className={this.state.login + " login-form"}>
             <input
               type="text"
               name="email"
@@ -156,7 +155,7 @@ class cbsLogin extends React.Component {
                 Create an account
               </a>
             </p>
-          </form>
+          </div>
         </div>
       </div>
     );
