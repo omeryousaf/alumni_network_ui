@@ -9,10 +9,8 @@ class directory extends React.Component {
     this.state = {
       memberList: []
     };
-    this.getMembersDate = this.getMembersDate.bind(this);
-    this.getMembersDate();
   }
-  async getMembersDate() {
+  async componentDidMount() {
     var res = await axios({
       method: "Get",
       url: `${process.env.API_SERVER_URL}/members`
@@ -21,10 +19,10 @@ class directory extends React.Component {
     tempMemberList = [res.data];
     this.setState({ memberList: tempMemberList });
   }
+
   render() {
     var tempMemberList = [...this.state.memberList];
     const userdata = [];
-    console.log(tempMemberList);
     tempMemberList.map((d, key) => {
       d.members.map((d, key) => {
         userdata.push(<Person data={d} key={key} />);
