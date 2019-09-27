@@ -1,3 +1,4 @@
+require('./config.js');
 const config = {
   entry: ['babel-polyfill', __dirname + '/src/app.jsx'],
   output: {
@@ -15,6 +16,17 @@ const config = {
       test:/\.css$/,
       use:['style-loader','css-loader']
     }]
+  },
+  devServer: {
+    contentBase: __dirname, // where the index.html must be present
+    compress: true,
+    port: process.env.LIVE_SERVER_PORT,
+    historyApiFallback: true, // results in serving index.html for all non-matching routes
+    proxy: { // changes request origin from what it is to same as the target domain / server so CORS does not arise
+      '/api': {
+        target: process.env.PROXY_TO_DOMAIN
+      }
+    }
   }
 };
 

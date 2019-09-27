@@ -27,7 +27,7 @@ class CbsFullCalendar extends React.Component {
 
 	async componentDidMount() {
 		try {
-			let response = await axios.get(`${process.env.API_SERVER_URL}/events`);
+			let response = await axios.get(`${process.env.API_SERVER_URL}/api/events`);
 			response.data.events = response.data.events.map((event) => {
 				event.doc.start = moment.unix(event.doc.start).toDate();
 				event.doc.end = moment.unix(event.doc.end).toDate();
