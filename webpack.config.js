@@ -21,7 +21,12 @@ const config = {
     contentBase: __dirname, // where the index.html must be present
     compress: true,
     port: process.env.LIVE_SERVER_PORT,
-    historyApiFallback: true // results in serving index.html for all non-matching routes
+    historyApiFallback: true, // results in serving index.html for all non-matching routes
+    proxy: {
+      '/api': {
+        target: process.env.API_SERVER_DOMAIN
+      }
+    }
   }
 };
 
