@@ -29,7 +29,7 @@ class EditEvent extends React.Component {
 			const { match: { params } } = this.props;
 			if (params._id) {
 				const eventId = params._id;
-				const response = await axios.get(`${process.env.API_SERVER_URL}/events/${eventId}`);
+				const response = await axios.get(`${process.env.API_SERVER_URL}/api/events/${eventId}`);
 				const event = response.data;
 				this.setState({
 					_id: event._id,
@@ -80,7 +80,7 @@ class EditEvent extends React.Component {
 			location: this.state.location
 		};
 		try {
-			await axios.post(`${process.env.API_SERVER_URL}/events`, {
+			await axios.post(`${process.env.API_SERVER_URL}/api/events`, {
 				event: event
 			});
 			const message = 'New Event Created Successfully!';
@@ -115,7 +115,7 @@ class EditEvent extends React.Component {
 		try {
 			await axios({
 				method: 'put',
-				url: `${process.env.API_SERVER_URL}/events/${event._id}`,
+				url: `${process.env.API_SERVER_URL}/api/events/${event._id}`,
 				data: {
 					event: event
 				}
