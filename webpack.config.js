@@ -24,7 +24,7 @@ const config = {
     historyApiFallback: true, // results in serving index.html for all non-matching routes
     proxy: {
       '/api': {
-        target: process.env.API_SERVER_DOMAIN
+        target: process.env.PROXY_TO_DOMAIN
       }
     }
   }
