@@ -24,132 +24,121 @@ class EditEvent extends React.Component {
     this.update = this.update.bind(this);
   }
 
-  async componentDidMount() {
-    try {
-      const {
-        match: { params }
-      } = this.props;
-      if (params._id) {
-        const eventId = params._id;
-        const response = await axios.get(
-          `${process.env.API_SERVER_URL}/events/${eventId}`
-        );
-        const event = response.data;
-        this.setState({
-          _id: event._id,
-          _rev: event._rev,
-          title: event.title,
-          startDate: moment.unix(event.start).toDate(),
-          endDate: moment.unix(event.end).toDate(),
-          location: event.location,
-          isEditScreen: true
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+	async componentDidMount() {
+		try {
+			const { match: { params } } = this.props;
+			if (params._id) {
+				const eventId = params._id;
+				const response = await axios.get(`${process.env.API_SERVER_URL}/api/events/${eventId}`);
+				const event = response.data;
+				this.setState({
+					_id: event._id,
+					_rev: event._rev,
+					title: event.title,
+					startDate: moment.unix(event.start).toDate(),
+					endDate: moment.unix(event.end).toDate(),
+					location: event.location,
+					isEditScreen: true
+				});
+			}
+		} catch(error) {
+			console.log(error);
+		}
+	}
 
-  handleStartDateChange(date) {
-    this.setState({
-      startDate: date
-    });
-    if (moment(date) > moment(this.state.endDate)) {
-      this.setState({
-        endDate: date
-      });
-    }
-  }
-  handleEndDateChange(date) {
-    this.setState({
-      endDate: date
-    });
-    if (moment(date) < moment(this.state.startDate)) {
-      this.setState({
-        startDate: date
-      });
-    }
-  }
-  handleText(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-  async save(e) {
-    e.preventDefault();
-    const event = {
-      title: this.state.title,
-      start: moment(this.state.startDate).unix(),
-      end: moment(this.state.endDate).unix(),
-      location: this.state.location
-    };
-    try {
-      await axios.post(`${process.env.API_SERVER_URL}/events`, {
-        event: event
-      });
-      const message = "New Event Created Successfully!";
-      toast.success(message, {
-        position: toast.POSITION.TOP_CENTER
-      });
-    } catch (error) {
-      console.log(error);
-      if (error.response.status === 419) {
-        toast.error("Your session has expired. Routing you to login page!", {
-          position: toast.POSITION.TOP_CENTER
-        });
-        setTimeout(() => {
-          window.location = window.location.origin + "/login";
-        }, 3000);
-        return;
-      }
-      toast.error(
-        "Something went wrong. Please try again or contact the Admin!",
-        {
-          position: toast.POSITION.TOP_CENTER
-        }
-      );
-    }
-  }
-  async update(e) {
-    e.preventDefault();
-    const event = {
-      _id: this.state._id,
-      _rev: this.state._rev,
-      title: this.state.title,
-      start: moment(this.state.startDate).unix(),
-      end: moment(this.state.endDate).unix(),
-      location: this.state.location
-    };
-    try {
-      await axios({
-        method: "put",
-        url: `${process.env.API_SERVER_URL}/events/${event._id}`,
-        data: {
-          event: event
-        }
-      });
-      const message = "Event Updated Successfully!";
-      toast.success(message, {
-        position: toast.POSITION.TOP_CENTER
-      });
-    } catch (error) {
-      if (error.response.status === 419) {
-        toast.error("Your session has expired. Routing you to login page!", {
-          position: toast.POSITION.TOP_CENTER
-        });
-        setTimeout(() => {
-          window.location = window.location.origin + "/login";
-        }, 3000);
-        return;
-      }
-      toast.error(
-        "Something went wrong. Please try again or contact the Admin!",
-        {
-          position: toast.POSITION.TOP_CENTER
-        }
-      );
-    }
-  }
+	handleStartDateChange(date) {
+		this.setState({
+			startDate: date
+		});
+		if (moment(date) > moment(this.state.endDate)) {
+			this.setState({
+				endDate: date
+			});
+		}
+	}
+	handleEndDateChange(date) {
+		this.setState({
+			endDate: date
+		});
+		if (moment(date) < moment(this.state.startDate)) {
+			this.setState({
+				startDate: date
+			});
+		}
+	}
+	handleText(e) {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	}
+	async save(e) {
+		e.preventDefault();
+		const event = {
+			title: this.state.title,
+			start: moment(this.state.startDate).unix(),
+			end: moment(this.state.endDate).unix(),
+			location: this.state.location
+		};
+		try {
+			await axios.post(`${process.env.API_SERVER_URL}/api/events`, {
+				event: event
+			});
+			const message = 'New Event Created Successfully!';
+			toast.success(message, {
+				position: toast.POSITION.TOP_CENTER
+			});
+		} catch(error) {
+			if (error.response.status === 419) {
+				toast.error('Your session has expired. Routing you to login page!', {
+					position: toast.POSITION.TOP_CENTER
+				});
+				setTimeout(() => {
+					window.location = window.location.origin + '/login';
+				}, 3000);
+				return;
+			}
+			toast.error('Something went wrong. Please try again or contact the Admin!', {
+				position: toast.POSITION.TOP_CENTER
+			});
+		}
+	}
+	async update(e) {
+		e.preventDefault();
+		const event = {
+			_id: this.state._id,
+			_rev: this.state._rev,
+			title: this.state.title,
+			start: moment(this.state.startDate).unix(),
+			end: moment(this.state.endDate).unix(),
+			location: this.state.location
+		};
+		try {
+			await axios({
+				method: 'put',
+				url: `${process.env.API_SERVER_URL}/api/events/${event._id}`,
+				data: {
+					event: event
+				}
+			});
+			const message = 'Event Updated Successfully!';
+			toast.success(message, {
+				position: toast.POSITION.TOP_CENTER
+			});
+		} catch(error) {
+			if (error.response.status === 419) {
+				toast.error('Your session has expired. Routing you to login page!', {
+					position: toast.POSITION.TOP_CENTER
+				});
+				setTimeout(() => {
+					window.location = window.location.origin + '/login';
+				}, 3000);
+				return;
+			}
+			toast.error('Something went wrong. Please try again or contact the Admin!', {
+				position: toast.POSITION.TOP_CENTER
+			});
+		}
+	}
 
   render() {
     return (
