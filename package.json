@@ -23,14 +23,15 @@
     "react-toastify": "^5.1.0",
     "style-loader": "^0.23.1",
     "styled-components": "^4.3.2",
-    "webpack": "^4.36.1"
+    "webpack": "^4.36.1",
+    "webpack-dev-server": "^3.8.1"
   },
   "devDependencies": {
     "webpack-cli": "^3.3.6"
   },
   "scripts": {
     "build": "webpack -d",
-    "start": "nodemon live-server",
+    "start": "webpack-dev-server --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
