@@ -29,7 +29,7 @@ class cbsLogin extends React.Component {
       const self = this;
       var res = await axios({
         method: "Post",
-        url: `${process.env.API_SERVER_URL}isUsernameUnique`,
+        url: `${process.env.API_SERVER_URL}/api/isUsernameUnique`,
         data: {
           newUser: self.state.registerationDetails
         }
@@ -48,7 +48,7 @@ class cbsLogin extends React.Component {
       const self = this;
       var res = await axios({
         method: "Post",
-        url: `${process.env.API_SERVER_URL}/authenticateLogin`,
+        url: `${process.env.API_SERVER_URL}/api/authenticateLogin`,
         data: {
           username: self.state.registerationDetails.email,
           password: self.state.registerationDetails.password

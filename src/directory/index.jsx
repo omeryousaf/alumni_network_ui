@@ -13,7 +13,7 @@ class directory extends React.Component {
   async componentDidMount() {
     var res = await axios({
       method: "Get",
-      url: `${process.env.API_SERVER_URL}/members`
+      url: `${process.env.API_SERVER_URL}/api/members`
     });
     var tempMemberList = [...this.state.memberList];
     tempMemberList = [res.data];
