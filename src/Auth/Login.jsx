@@ -1,6 +1,9 @@
 import React from "react";
-import "./index.css";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
+import "./index.css";
+import { notifyUser } from '../helpers.js';
+
 class cbsLogin extends React.Component {
   constructor(props) {
     super(props);
@@ -60,7 +63,7 @@ class cbsLogin extends React.Component {
       this.props.history.push("/profile");
       console.log("login successfully");
     } catch (err) {
-      alert("email/Password incorrect");
+      notifyUser(err.response.data.reason);
     }
   }
   onChangeHandler(event) {
@@ -84,6 +87,7 @@ class cbsLogin extends React.Component {
 
     return (
       <div className="login-page">
+        <ToastContainer />
         <div className="form">
           <h4>CBS Alumni Network</h4>
           <div className={this.state.register + " register-form"}>
