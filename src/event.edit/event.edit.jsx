@@ -1,28 +1,28 @@
-import React from 'react';
-import { BrowserRouter, Link } from 'react-router-dom';
-import DatePicker from 'react-datepicker';
-import * as moment from 'moment';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
+import React from "react";
+import { BrowserRouter, Link } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import * as moment from "moment";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
-import 'react-datepicker/dist/react-datepicker.css';
-import 'react-toastify/dist/ReactToastify.css';
+import "react-datepicker/dist/react-datepicker.css";
+import "react-toastify/dist/ReactToastify.css";
 
 class EditEvent extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			title: '',
-			startDate: moment().toDate(),
-			endDate: moment().toDate(),
-			location: ''
-		};
-		this.handleStartDateChange = this.handleStartDateChange.bind(this);
-		this.handleEndDateChange = this.handleEndDateChange.bind(this);
-		this.handleText = this.handleText.bind(this);
-		this.save = this.save.bind(this);
-		this.update = this.update.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      startDate: moment().toDate(),
+      endDate: moment().toDate(),
+      location: ""
+    };
+    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+    this.handleEndDateChange = this.handleEndDateChange.bind(this);
+    this.handleText = this.handleText.bind(this);
+    this.save = this.save.bind(this);
+    this.update = this.update.bind(this);
+  }
 
 	async componentDidMount() {
 		try {
@@ -140,82 +140,91 @@ class EditEvent extends React.Component {
 		}
 	}
 
-	render() {
-		return (
-			<div>
-				<div>
-					<ToastContainer />
-					<div>
-						<Link className='btn' to="/calendar/index">Back to Calendar</Link>
-					</div>
-					<div>
-						<form>
-							<div>
-								<h2>Create Event</h2>
-								<div className='row form-group'>
-									<div className='col-xs-1'>
-										<span>Title</span>
-									</div>
-									<div className='col-xs-6'>
-										<input value={this.state.title} onChange={this.handleText}
-											name='title'/>
-									</div>
-								</div>
-								<div className='row form-group'>
-									<div className='col-xs-1'>
-										<span>Start</span>
-									</div>
-									<div className='col-xs-6'>
-										<DatePicker
-											selected={this.state.startDate}
-											onChange={this.handleStartDateChange}
-											showTimeSelect
-											timeFormat="HH:mm"
-											timeIntervals={15}
-											dateFormat="MMMM d, yyyy h:mm aa"
-											timeCaption="time">
-										</DatePicker>
-									</div>
-								</div>
-								<div className='row form-group'>
-									<div className='col-xs-1'>
-										<span>End</span>
-									</div>
-									<div className='col-xs-6'>
-										<DatePicker
-											selected={this.state.endDate}
-											onChange={this.handleEndDateChange}
-											showTimeSelect
-											timeFormat="HH:mm"
-											timeIntervals={15}
-											dateFormat="MMMM d, yyyy h:mm aa"
-											timeCaption="time">
-										</DatePicker>
-									</div>
-								</div>
-								<div className='row form-group'>
-									<div className='col-xs-1'>
-										<span>Venue</span>
-									</div>
-									<div className='col-xs-6'>
-										<input value={this.state.location} onChange={this.handleText}
-											name='location'/>
-									</div>
-								</div>
-								<div>
-									<button
-										className='btn btn-primary button-gen-layout'
-										onClick={this.state.isEditScreen ? this.update : this.save}>
-										{this.state.isEditScreen ? 'Update' : 'Save'}
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div>
+        <div>
+          <ToastContainer />
+          <div>
+            <Link className="btn" to="/calendar">
+              Back to Calendar
+            </Link>
+          </div>
+          <div>
+            <form>
+              <div>
+                <h2>Create Event</h2>
+                <div className="row form-group">
+                  <div className="col-xs-1">
+                    <span>Title</span>
+                  </div>
+                  <div className="col-xs-6">
+                    <input
+                      value={this.state.title}
+                      onChange={this.handleText}
+                      name="title"
+                    />
+                  </div>
+                </div>
+                <div className="row form-group">
+                  <div className="col-xs-1">
+                    <span>Start</span>
+                  </div>
+                  <div className="col-xs-6">
+                    <DatePicker
+                      selected={this.state.startDate}
+                      onChange={this.handleStartDateChange}
+                      showTimeSelect
+                      timeFormat="HH:mm"
+                      timeIntervals={15}
+                      dateFormat="MMMM d, yyyy h:mm aa"
+                      timeCaption="time"
+                    />
+                  </div>
+                </div>
+                <div className="row form-group">
+                  <div className="col-xs-1">
+                    <span>End</span>
+                  </div>
+                  <div className="col-xs-6">
+                    <DatePicker
+                      selected={this.state.endDate}
+                      onChange={this.handleEndDateChange}
+                      showTimeSelect
+                      timeFormat="HH:mm"
+                      timeIntervals={15}
+                      dateFormat="MMMM d, yyyy h:mm aa"
+                      timeCaption="time"
+                    />
+                  </div>
+                </div>
+                <div className="row form-group">
+                  <div className="col-xs-1">
+                    <span>Venue</span>
+                  </div>
+                  <div className="col-xs-6">
+                    <input
+                      value={this.state.location}
+                      onChange={this.handleText}
+                      name="location"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <button
+                    className="btn btn-primary button-gen-layout"
+                    onClick={this.state.isEditScreen ? this.update : this.save}
+                  >
+                    {this.state.isEditScreen ? "Update" : "Save"}
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default EditEvent;

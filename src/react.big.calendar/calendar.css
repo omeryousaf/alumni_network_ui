@@ -1,3 +1,7 @@
 .h-80vh {
-	height: 80vh;
+  height: 80vh;
+}
+
+.btn {
+  color: black;
 }
