@@ -3,6 +3,12 @@ import axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "./index.css";
 import { notifyUser } from '../helpers.js';
+import styled from "styled-components";
+
+const LoginSignupForm = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 class cbsLogin extends React.Component {
   constructor(props) {
@@ -86,7 +92,7 @@ class cbsLogin extends React.Component {
     }
 
     return (
-      <div className="login-page">
+      <LoginSignupForm>
         <ToastContainer />
         <div className="form">
           <h4>CBS Alumni Network</h4>
@@ -157,7 +163,7 @@ class cbsLogin extends React.Component {
             </p>
           </div>
         </div>
-      </div>
+      </LoginSignupForm>
     );
   }
 }
